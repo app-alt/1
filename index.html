@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>此网站是安全网站</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: transparent;
+            font-family: Arial, sans-serif;
+            color: #008000;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            max-width: 360px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            color: #008000;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .container p {
+            font-size: 16px;
+            color: #006400;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #008000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #006400;
+        }
+
+        .btn-secondary {
+            background-color: #00a000;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #007000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>此网站是安全网站</h2>
+        <p>为了确保您的安全，请点击下方按钮复制链接并在浏览器中打开，以获得最佳体验。</p>
+        <button class="btn" onclick="copyLink()">复制链接</button>
+        <button class="btn btn-secondary" onclick="openInBrowser()">在浏览器中打开</button>
+    </div>
+
+    <script>
+        function isWeChat() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1;
+        }
+
+        function copyLink() {
+            var dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert("链接已复制，请在浏览器中粘贴打开！");
+        }
+
+        function openInBrowser() {
+            if (isWeChat()) {
+                alert("请在浏览器中打开该链接！");
+            } else {
+                window.location.href = "https://126.sx";
+            }
+        }
+
+        window.onload = function () {
+            if (isWeChat()) {
+                alert("检测到您在微信中打开，请在浏览器中打开！");
+            }
+        };
+    </script>
+</body>
+
+</html>
